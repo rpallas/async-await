@@ -26,7 +26,7 @@ async function E (data) {
   return await waitAndLog('E', data);
 }
 
-async function run (data = { callOrder: [], finishOrder: []}) {
+async function run (data = { callOrder: [] }) {
   try {
     data.a = await A(data);
     [data.b, data.c] = await Promise.all([B(data), C(data)]);
