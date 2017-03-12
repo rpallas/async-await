@@ -29,9 +29,10 @@ async function E (data) {
 async function run (data = { callOrder: [] }) {
   try {
     data.a = await A(data);
-    [data.b, data.c] = await Promise.all([B(data), C(data)]);
-    data.d = await D(data);
-    data.e = await E(data);
+    await Promise.all([
+      B(data).then(() => D(data)),
+      C(data).then(() => E(data))
+    ]);
   } catch (err) {
     console.log('err: ', err);
   }
