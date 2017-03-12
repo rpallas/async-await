@@ -5,7 +5,7 @@ const waitAndLog = (msg, data, callback) => {
   setTimeout(() => {
     data.callOrder.push(`${msg} Finish`);
     callback(null, `${msg} data`);
-  }, 1000);
+  }, 100);
 };
 
 function A (data) {

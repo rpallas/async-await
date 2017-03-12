@@ -3,7 +3,7 @@ function waitAndLog(msg, data) {
   return new Promise(resolve => setTimeout(() => {
     data.callOrder.push(`${msg} Finish`);
     resolve(`${msg} data`);
-  }, 1000));
+  }, 100));
 }
 
 async function A (data) {
