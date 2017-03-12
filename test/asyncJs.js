@@ -27,7 +27,7 @@ Test.cb('D is called after A and B are complete', t => {
 Test.cb('E is called after A and C are complete', t => {
   asyncJs.run(undefined, (err, result) => {
     t.true((result.callOrder.indexOf('E Start') > result.callOrder.indexOf('A Finish'))
-       && ((result.callOrder.indexOf('E Start') > result.callOrder.indexOf('B Finish'))));
+       && ((result.callOrder.indexOf('E Start') > result.callOrder.indexOf('C Finish'))));
     t.end();
   });
 });

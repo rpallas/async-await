@@ -21,7 +21,7 @@ Test('D is called after A and B are complete', async t => {
 Test('E is called after A and C are complete', async t => {
   let result = await asyncAwait.run();
   t.true((result.callOrder.indexOf('E Start') > result.callOrder.indexOf('A Finish'))
-     && ((result.callOrder.indexOf('E Start') > result.callOrder.indexOf('B Finish'))));
+     && ((result.callOrder.indexOf('E Start') > result.callOrder.indexOf('C Finish'))));
 });
 
 Test('It calls each function as soon as it\'s dependencies are satisfied', async t => {
