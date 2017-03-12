@@ -1,11 +1,11 @@
 const Async = require('async');
 
-const waitAndLog = (msg, data, callback) => {
+const waitAndLog = (msg, data, callback, delay=100) => {
   data.callOrder.push(`${msg} Start`);
   setTimeout(() => {
     data.callOrder.push(`${msg} Finish`);
     callback(null, `${msg} data`);
-  }, 100);
+  }, delay);
 };
 
 function A (data) {
@@ -15,7 +15,8 @@ function A (data) {
 }
 function B (data) {
   return (results, callback) => {
-    waitAndLog('B', data, callback);
+    // shorter delay to be sure of expected order
+    waitAndLog('B', data, callback, 99);
   };
 }
 function C (data) {

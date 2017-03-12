@@ -1,9 +1,9 @@
-function waitAndLog(msg, data) {
+function waitAndLog(msg, data, delay=100) {
   data.callOrder.push(`${msg} Start`);
   return new Promise(resolve => setTimeout(() => {
     data.callOrder.push(`${msg} Finish`);
     resolve(`${msg} data`);
-  }, 100));
+  }, delay));
 }
 
 async function A (data) {
@@ -11,7 +11,8 @@ async function A (data) {
 }
 
 async function B (data) {
-  return await waitAndLog('B', data);
+  // shorter delay to be sure of expected order
+  return await waitAndLog('B', data, 99);
 }
 
 async function C (data) {
@@ -29,9 +30,10 @@ async function E (data) {
 async function run (data = { callOrder: [] }) {
   try {
     data.a = await A(data);
-    [data.b, data.c] = await Promise.all([B(data), C(data)]);
-    data.d = await D(data);
-    data.e = await E(data);
+    [data.b, data.c] = await Promise.all([
+      B(data).then(() => D(data)),
+      C(data).then(() => E(data))
+    ]);
   } catch (err) {
     console.log('err: ', err);
   }
