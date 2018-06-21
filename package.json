@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=6.10.x"
+    "node": ">=8.11.x"
   },
   "scripts": {
     "test": "ava"
