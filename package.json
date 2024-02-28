@@ -16,6 +16,6 @@
     "async": "^2.1.5"
   },
   "devDependencies": {
-    "ava": "0.25.0"
+    "ava": "6.1.2"
   }
 }
